@@ -1,7 +1,7 @@
 // server.js — Authoritative 1v1 server for Merge Story
 // Run: node server.js
 // Requires: npm i ws seedrandom
-import { WebSocketServer } from 'ws';
+import { WebSocketServer, WebSocket } from 'ws';
 import seedrandom from 'seedrandom';
 
 const PORT = process.env.PORT || 8080;
@@ -94,7 +94,7 @@ function packStateFor(id, room){
 
 function broadcast(room, msg){
   for (const p of room.players){
-    if (p.ws.readyState === p.ws.OPEN){
+    if (p.ws.readyState === WebSocket.OPEN){
       p.ws.send(JSON.stringify(msg));
     }
   }
