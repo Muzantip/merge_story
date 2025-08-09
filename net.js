@@ -1,10 +1,12 @@
 (function(){
 'use strict';
 
+const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+
 const Net = {
   _tag: '[NET]',
   ws:null,
-  url: (location.hostname ? `ws://${location.hostname}:8080` : 'ws://localhost:8080'),
+  url: (location.hostname ? `${proto}://${location.hostname}:8080` : `${proto}://localhost:8080`),
   roomId:null,
   youId:null,
   seed:null,
